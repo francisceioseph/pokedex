@@ -15,7 +15,6 @@ class ActionsGrid extends StatelessWidget {
   }
 
   _buildTiles() {
-    print(actionsGridMock);
     return actionsGridMock.map((action) {
       return ActionsGridTile(
         title: action.title,
