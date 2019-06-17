@@ -5,12 +5,15 @@ import './actions_grid_tile.dart';
 class ActionsGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: GridView.count(
-        crossAxisCount: 2,
-        childAspectRatio: 2,
-        children: _buildTiles(),
+    return GridView.count(
+      padding: EdgeInsets.only(
+        bottom: 4,
       ),
+      crossAxisCount: 2,
+      childAspectRatio: 2,
+      physics: ScrollPhysics(),
+      shrinkWrap: true,
+      children: _buildTiles(),
     );
   }
 

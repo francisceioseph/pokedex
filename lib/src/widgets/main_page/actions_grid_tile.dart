@@ -20,11 +20,21 @@ class ActionsGridTile extends StatelessWidget {
         bottom: 4,
       ),
       decoration: BoxDecoration(
-        color: Color(colorHex),
-        borderRadius: BorderRadius.all(
-          Radius.circular(22.0),
-        ),
-      ),
+          color: Color(colorHex),
+          borderRadius: BorderRadius.all(
+            Radius.circular(22.0),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey[350],
+              blurRadius: 2.0,
+              spreadRadius: 1.0,
+              offset: Offset(
+                0.0,
+                4.0,
+              ),
+            )
+          ]),
       child: Text(
         title,
         style: TextStyle(
