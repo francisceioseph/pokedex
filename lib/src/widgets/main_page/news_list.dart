@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../mocks/pokenews.dart';
 import '../../models/news_model.dart';
 import '../commons.dart';
 
 class NewsList extends StatelessWidget with CommonsMixin {
-  final List<NewsModel> news = [];
+  final List<NewsModel> news = pokenews;
 
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +36,7 @@ class NewsList extends StatelessWidget with CommonsMixin {
           buildPageSubtitle('Pokémon News'),
           FlatButton(
             textColor: Colors.blue,
-            child: Text('More...'),
+            child: Text('View all'),
             onPressed: news.length < 1 ? null : () {},
           )
         ],
