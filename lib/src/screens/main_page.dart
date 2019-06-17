@@ -1,23 +1,40 @@
 import 'package:flutter/material.dart';
 import '../widgets/searchbar.dart';
 import '../widgets/main_page/actions_grid.dart';
+import '../widgets/main_page/news_list.dart';
 
 class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          margin: EdgeInsets.only(
-            top: 64,
-            left: 16,
-            right: 16,
+          decoration: BoxDecoration(
+            color: Color(0xfff5f5f5),
           ),
-          child: Column(
-            children: <Widget>[
-              _renderPageTitle(),
-              SearchBar(),
-              ActionsGrid(),
-            ],
+          child: Container(
+            decoration: BoxDecoration(
+              color: Color(0xffffffff),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(30),
+              ),
+            ),
+            child: Container(
+              margin: EdgeInsets.only(
+                top: 64,
+                left: 8,
+                right: 8,
+                bottom: 30,
+              ),
+              child: Column(
+                children: [
+                  _renderPageTitle(),
+                  SearchBar(),
+                  ActionsGrid(),
+                  NewsList(),
+                ],
+              ),
+            ),
           ),
         ),
       ),

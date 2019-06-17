@@ -8,7 +8,7 @@ class ActionsGrid extends StatelessWidget {
     return Expanded(
       child: GridView.count(
         crossAxisCount: 2,
-        childAspectRatio: 18 / 9,
+        childAspectRatio: 2,
         children: _buildTiles(),
       ),
     );

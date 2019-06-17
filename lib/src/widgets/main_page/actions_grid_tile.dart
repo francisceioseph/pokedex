@@ -10,7 +10,15 @@ class ActionsGridTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.centerLeft,
-      padding: EdgeInsets.only(left: 18),
+      padding: EdgeInsets.only(
+        left: 18,
+      ),
+      margin: EdgeInsets.only(
+        top: 4,
+        right: 4,
+        left: 4,
+        bottom: 4,
+      ),
       decoration: BoxDecoration(
         color: Color(colorHex),
         borderRadius: BorderRadius.all(
@@ -20,7 +28,7 @@ class ActionsGridTile extends StatelessWidget {
       child: Text(
         title,
         style: TextStyle(
-          fontSize: 18,
+          fontSize: 16,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
