@@ -2,9 +2,14 @@ import 'package:rxdart/rxdart.dart';
 
 import '../../models/generation.dart';
 import '../../resources/repository.dart';
+import '../../resources/generations/source.dart';
 
 class GenerationsBloc {
-  final _repository = Repository<Generation>();
+  final _repository = Repository<Generation>(
+    sources: [GenerationSource()],
+    caches: [],
+  );
+
   final _generations = PublishSubject<List<Generation>>();
 
   Observable<List<Generation>> get generations =>

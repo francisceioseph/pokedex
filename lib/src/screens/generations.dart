@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../blocs/generations/generations_bloc.dart';
 import '../blocs/generations/generations_provider.dart';
 import '../models/generation.dart';
+import '../widgets/generations/generations_grid.dart';
 
 class GenerationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -37,11 +38,8 @@ class GenerationsScreen extends StatelessWidget {
           );
         }
 
-        return ListView.builder(
-          itemCount: snapshot.data.length,
-          itemBuilder: (context, int index) {
-            return Text(snapshot.data[index].name);
-          },
+        return GenerationsGrid(
+          generations: snapshot.data,
         );
       },
     );

@@ -1,3 +1,5 @@
+import 'package:meta/meta.dart';
+
 import './cache.dart';
 import './source.dart';
 
@@ -5,7 +7,7 @@ class Repository<T> {
   final List<Source<T>> sources;
   final List<Cache<T>> caches;
 
-  Repository({this.sources, this.caches});
+  Repository({@required this.sources, @required this.caches});
 
   Future<List<T>> fetchResource() async {
     List<T> resources;

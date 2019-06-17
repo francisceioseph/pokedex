@@ -4,6 +4,7 @@ class CommonsMixin {
   Widget buildPageTitle(String text) {
     return Text(
       text,
+      textAlign: TextAlign.left,
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 28,
