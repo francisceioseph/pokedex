@@ -1,16 +1,7 @@
 # pokedex
 
-A simple pokedex application
+A simple pokédex application to practise my flutter skills.
 
-## Getting Started
+Its based on this design provided by Saepul Nahwan at [uplabs](https://www.uplabs.com/posts/pokedex-app)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+[app]: https://assets.materialup.com/uploads/7f1c1db6-86fd-449e-b836-336a31b23a75/preview.png
