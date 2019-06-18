@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 
 import '../../models/generation.dart';
@@ -12,6 +13,15 @@ class GenerationsBloc {
 
   final _generations = PublishSubject<List<Generation>>();
 
+  final _generationFetcher = PublishSubject<int>();
+  final _generationOutput = BehaviorSubject<Map<int, Future<Generation>>>();
+
+  GenerationsBloc() {
+    _generationFetcher.stream
+        .transform(_generationsTransformer())
+        .pipe(_generationOutput);
+  }
+
   Observable<List<Generation>> get generations =>
       _generations.stream.map((generations) {
         return generations
@@ -24,12 +34,29 @@ class GenerationsBloc {
             .toList();
       });
 
+  Observable<Map<int, Future<Generation>>> get generationsMap =>
+      _generationOutput.stream;
+
   fetchGenerations() async {
     final generations = await _repository.fetchResource();
     _generations.sink.add(generations);
   }
 
+  Function(int) get fetchGeneration => _generationFetcher.sink.add;
+
+  _generationsTransformer() {
+    return ScanStreamTransformer(
+      (Map<int, Future<Generation>> cache, int id, index) {
+        cache[id] = _repository.fetchItem(id);
+        return cache;
+      },
+      <int, Future<Generation>>{},
+    );
+  }
+
   dispose() {
     _generations.close();
+    _generationFetcher.close();
+    _generationOutput.close();
   }
 }

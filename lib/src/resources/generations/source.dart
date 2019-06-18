@@ -16,7 +16,10 @@ class GenerationSource implements Source<Generation> {
     return results.map((data) => Generation.fromJSON(data)).toList();
   }
 
-  Future<Generation> fetchItem(int id) {
-    return null;
+  Future<Generation> fetchItem(int id) async {
+    final response = await _client.get('$_ROOT_URL/generation/$id');
+    final body = json.decode(response.body);
+    final generation = Generation.fromJSON(body);
+    return generation;
   }
 }

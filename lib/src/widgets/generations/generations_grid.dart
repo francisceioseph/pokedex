@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../models/generation.dart';
 import '../../widgets/commons.dart';
 import 'generation_tile.dart';
@@ -29,7 +30,7 @@ class GenerationsGrid extends StatelessWidget with CommonsMixin {
             ),
             crossAxisCount: 2,
             childAspectRatio: 1.5,
-            children: _buildTiles(),
+            children: _buildGenerationTile(),
             shrinkWrap: true,
           ),
         ],
@@ -37,10 +38,10 @@ class GenerationsGrid extends StatelessWidget with CommonsMixin {
     );
   }
 
-  List<Widget> _buildTiles() {
+  List<Widget> _buildGenerationTile() {
     return generations.map((generation) {
       return GenerationGridTile(
-        title: generation.name,
+        generation: generation,
       );
     }).toList();
   }
