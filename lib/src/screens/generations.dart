@@ -8,7 +8,7 @@ import '../widgets/generations/generations_grid.dart';
 class GenerationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = GenerationsProvider.of(context);
-    bloc.fetchGenerations();
+    bloc.fetchMetaGenerations();
 
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +27,7 @@ class GenerationsScreen extends StatelessWidget {
 
   Widget _buildGridView(GenerationsBloc bloc) {
     return StreamBuilder(
-      stream: bloc.generations,
+      stream: bloc.metaGenerations,
       builder: (
         BuildContext context,
         AsyncSnapshot<List<Generation>> snapshot,

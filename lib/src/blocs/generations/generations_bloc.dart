@@ -11,10 +11,11 @@ class GenerationsBloc {
     caches: [],
   );
 
-  final _generations = PublishSubject<List<Generation>>();
+  final _metaGenerations = PublishSubject<List<Generation>>();
 
   final _generationFetcher = PublishSubject<int>();
   final _generationOutput = BehaviorSubject<Map<int, Future<Generation>>>();
+  final _choosenGeneration = BehaviorSubject<Generation>();
 
   GenerationsBloc() {
     _generationFetcher.stream
@@ -22,8 +23,8 @@ class GenerationsBloc {
         .pipe(_generationOutput);
   }
 
-  Observable<List<Generation>> get generations =>
-      _generations.stream.map((generations) {
+  Observable<List<Generation>> get metaGenerations =>
+      _metaGenerations.stream.map((generations) {
         return generations
             .asMap()
             .map((int index, Generation generation) {
@@ -34,15 +35,18 @@ class GenerationsBloc {
             .toList();
       });
 
+  fetchMetaGenerations() async {
+    final generations = await _repository.fetchResource();
+    _metaGenerations.sink.add(generations);
+  }
+
   Observable<Map<int, Future<Generation>>> get generationsMap =>
       _generationOutput.stream;
 
-  fetchGenerations() async {
-    final generations = await _repository.fetchResource();
-    _generations.sink.add(generations);
-  }
-
   Function(int) get fetchGeneration => _generationFetcher.sink.add;
+
+  Observable<Generation> get choosenGeneration => _choosenGeneration.stream;
+  Function(Generation) get chooseGeneration => _choosenGeneration.sink.add;
 
   _generationsTransformer() {
     return ScanStreamTransformer(
@@ -55,8 +59,9 @@ class GenerationsBloc {
   }
 
   dispose() {
-    _generations.close();
+    _metaGenerations.close();
     _generationFetcher.close();
     _generationOutput.close();
+    _choosenGeneration.close();
   }
 }

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/src/blocs/search_actions/search_actions_provider.dart';
+import 'package:pokedex/src/models/action_grid.dart';
 
 class ActionsGridTile extends StatelessWidget {
-  final String title;
-  final int colorHex;
+  final ActionGridModel action;
 
-  ActionsGridTile({Key key, this.title, this.colorHex}) : super(key: key);
+  ActionsGridTile({Key key, this.action}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        final bloc = SearchActionsProvider.of(context);
+        bloc.chooseSearchAction(action);
         Navigator.of(context).pushNamed('/generations');
       },
       child: Container(
@@ -24,7 +27,7 @@ class ActionsGridTile extends StatelessWidget {
           bottom: 4,
         ),
         decoration: BoxDecoration(
-            color: Color(colorHex),
+            color: Color(action.colorHex),
             borderRadius: BorderRadius.all(
               Radius.circular(22.0),
             ),
@@ -40,7 +43,7 @@ class ActionsGridTile extends StatelessWidget {
               )
             ]),
         child: Text(
-          title,
+          action.title,
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,

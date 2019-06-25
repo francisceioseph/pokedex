@@ -19,10 +19,7 @@ class ActionsGrid extends StatelessWidget {
 
   _buildTiles() {
     return actionsGridMock.map((action) {
-      return ActionsGridTile(
-        title: action.title,
-        colorHex: action.colorHex,
-      );
+      return ActionsGridTile(action: action);
     }).toList();
   }
 }

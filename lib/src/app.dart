@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import './blocs/search_actions/search_actions_provider.dart';
 import './screens/not_found.dart';
 import './screens/main_page.dart';
 
@@ -23,8 +24,10 @@ class App extends StatelessWidget {
 
     if (settings.name == '/generations') {
       return MaterialPageRoute(builder: (BuildContext context) {
-        return GenerationsProvider(
-          child: GenerationsScreen(),
+        return SearchActionsProvider(
+          child: GenerationsProvider(
+            child: GenerationsScreen(),
+          ),
         );
       });
     }
