@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/generation.dart';
 import '../../widgets/commons.dart';
-import 'generation_tile.dart';
+import 'generation_stream_tile.dart';
 
 class GenerationsGrid extends StatelessWidget with CommonsMixin {
   final List<Generation> generations;
@@ -40,7 +40,7 @@ class GenerationsGrid extends StatelessWidget with CommonsMixin {
 
   List<Widget> _buildGenerationTile() {
     return generations.map((generation) {
-      return GenerationGridTile(
+      return GenerationStreamTile(
         generation: generation,
       );
     }).toList();

@@ -1,51 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/src/blocs/generations/generations_bloc.dart';
-import 'package:pokedex/src/blocs/generations/generations_provider.dart';
+
+import '../../blocs/generations/generations_provider.dart';
+import '../../models/action_grid.dart';
 import '../../models/generation.dart';
 import '../../constants.dart';
 
-class GenerationGridTile extends StatelessWidget {
+class GenerationTile extends StatelessWidget {
   final Generation generation;
+  final ActionGridModel action;
 
-  GenerationGridTile({Key key, this.generation}) : super(key: key);
+  GenerationTile({
+    Key key,
+    this.generation,
+    this.action,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final bloc = GenerationsProvider.of(context);
-    bloc.fetchGeneration(generation.id);
-
-    return StreamBuilder(
-      stream: bloc.generationsMap,
-      builder: (
-        BuildContext context,
-        AsyncSnapshot<Map<int, Future<Generation>>> snapshot,
-      ) {
-        if (!snapshot.hasData) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-
-        return FutureBuilder(
-          future: snapshot.data[generation.id],
-          builder: (BuildContext context, AsyncSnapshot<Generation> snap) {
-            if (!snap.hasData) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-
-            return _buildGenerationTile(snap.data, bloc);
-          },
-        );
-      },
-    );
-  }
-
-  Widget _buildGenerationTile(Generation gen, GenerationsBloc bloc) {
     return GestureDetector(
       onTap: () {
-        bloc.chooseGeneration(gen);
+        bloc.chooseGeneration(generation);
       },
       child: Container(
         alignment: Alignment.center,
@@ -72,7 +47,7 @@ class GenerationGridTile extends StatelessWidget {
               )
             ]),
         child: Text(
-          gen.englishName,
+          generation.englishName,
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 16,
