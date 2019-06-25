@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/src/blocs/search_actions/search_actions_provider.dart';
 import '../widgets/searchbar.dart';
 import '../widgets/main_page/actions_grid.dart';
 import '../widgets/main_page/news_list.dart';
@@ -12,11 +13,13 @@ class MainPage extends StatelessWidget with CommonsMixin {
           decoration: BoxDecoration(
             color: Color(0xfff5f5f5),
           ),
-          child: ListView(
-            children: <Widget>[
-              _buildSearchContainer(),
-              NewsList(),
-            ],
+          child: SearchActionsProvider(
+            child: ListView(
+              children: <Widget>[
+                _buildSearchContainer(),
+                NewsList(),
+              ],
+            ),
           ),
         ),
       ),

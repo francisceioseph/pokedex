@@ -34,7 +34,7 @@ class Generation {
 
     final List<dynamic> names = parsedJson['names'];
     final List<dynamic> founds =
-        names.where((item) => item['language']['name'] == 'en').first();
+        names.where((item) => item['language']['name'] == 'en').toList();
 
     return founds[0]['name'];
   }

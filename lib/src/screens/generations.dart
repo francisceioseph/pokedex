@@ -38,6 +38,10 @@ class GenerationsScreen extends StatelessWidget {
           );
         }
 
+        if (!snapshot.hasError) {
+          print(snapshot.error.toString());
+        }
+
         return GenerationsGrid(
           generations: snapshot.data,
         );
